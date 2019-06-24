@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/lambda-art-portfolio-bweu/art-portfolio-backend/issues"
   },
-  "homepage": "https://github.com/lambda-art-portfolio-bweu/art-portfolio-backend#readme"
+  "homepage": "https://github.com/lambda-art-portfolio-bweu/art-portfolio-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
