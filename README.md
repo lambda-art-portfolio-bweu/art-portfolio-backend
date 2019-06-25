@@ -1,3 +1,3 @@
 # art-portfolio-backend
 
-PRODUCTION
+Development
