@@ -4,15 +4,22 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "devStart": "nodemon server.js"
+    "start": "node index.js",
+    "devStart": "nodemon server.js",
+    "server": "nodemon",
+    "table1": "knex migrate:make createArtistTable",
+    "migrate": "knex migrate:latest",
+    "seed1": "knex seed:make 01-artist",
+    "runseed1": "knex seed:run 01-artist",
+    "seed": "knex seed:run",
+    "rollback": "knex migrate:rollback"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lambda-art-portfolio-bweu/art-portfolio-backend.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Talent Antonio",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/lambda-art-portfolio-bweu/art-portfolio-backend/issues"
