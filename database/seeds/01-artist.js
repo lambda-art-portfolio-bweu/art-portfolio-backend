@@ -21,7 +21,7 @@ exports.seed = function(knex, Promise) {
           lastname:'Peacock',
           username: 'lil dawyne',
           password: hashPassword,            
-          description: 'Bla bla blah bla blah cant be found'       
+          description: 'My guy still mashing peacocks'       
         },
         {
           id:3,
@@ -29,7 +29,7 @@ exports.seed = function(knex, Promise) {
           lastname:'cent',
           username: '50 Dollar',
           password: hashPassword,            
-          description: 'Bla bla blah bla blah cant be found'
+          description: 'I dont know what you heard about me'
         }
       ]);
     });
