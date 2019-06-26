@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
       res.status(500).json({ error: "There was an error getting users from the database" })
     }
   });
-  
+//   get artist by ID working
   router.get('/:id', async (req, res) => {
     const id = req.params.id
     try {
