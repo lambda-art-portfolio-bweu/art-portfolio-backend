@@ -9,27 +9,31 @@ exports.seed = function(knex, Promise) {
       return knex('artist').insert([
         {
           id:1,
-          name:'Bank',
-          lastname:'Nsy',
-          username: 'Banknsy',
-          password: hashPassword,            
-          description: 'Bla bla blah bla blah cant be found'
+          artistName:'Rui Ninja',
+          artistDescription: 'His camera skills are of a ninja',
+          profilePictureUrl:'',
+          username: 'ninja10',
+          password: hashPassword, 
+          email:'rui@team10.com' 
         },
         {
           id:2,
-          name:'Dwayne',
-          lastname:'Peacock',
-          username: 'lil dawyne',
-          password: hashPassword,            
-          description: 'My guy still mashing peacocks'       
+          artistName:'Dwayne Peacock',
+          artistDescription: 'My guy still chasing peacocks',
+          profilePictureUrl:'',
+          username: 'peacock27',
+          password: hashPassword, 
+          email:'dwayne@team10.com'           
+               
         },
         {
           id:3,
-          name:'five',
-          lastname:'cent',
-          username: '50 Dollar',
-          password: hashPassword,            
-          description: 'I dont know what you heard about me'
+          artistName:'Ike Samurai',
+          artistDescription: 'Likes katanas and a a very feisty samurai',
+          profilePictureUrl:'',
+          username: 'samurai10',
+          password: hashPassword, 
+          email:'ike@team10.com' 
         }
       ]);
     });
