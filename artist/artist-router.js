@@ -30,9 +30,8 @@ const restricted = require('../auth/restricted-middleware.js');
 // [GET] Artist  and its restricted to the logged in artist
 // removed the restricted on every end point
 
-router.get('/', (req, res) => {
-  Artist.find('artist')
-      .select('id', 'username')
+router.get('/artist', (req, res) => {
+  Artist.findAll('artist')
       .then(artist => {
           res.status(200).json({ artist, decodedToken: req.decodedToken });
       })

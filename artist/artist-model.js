@@ -5,10 +5,11 @@ module.exports = {
   findById,
   add,
   remove,
+  update,
   findBy
 };
 function findAll() {
-  return db('artist').select('id', 'username', 'password', artist);
+  return db('artist')
 }
 
 function findById(id) {
@@ -20,6 +21,12 @@ async function add(artist) {
 
   return findById(id);
 }
+function update(id, changes) {
+  return db('artist')
+    .where({ id })
+    .update(changes);
+}
+
 
 async function remove(id) {
   return db('artist').where({ id }).delete();
