@@ -19,5 +19,18 @@ function generateToken(artist){
   return jwt.sign(payload, secret.jwtSecret, options)
 }
 
+router.post('/register', (req, res) => {
+  let artist = req.body;
+  const hash = bcrypt.hashSync(artist.password, 10);
+  artist.password = hash;
+
+  Artist.add(artist)
+    .then(saved => {
+      res.status(201).json(saved);
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
 
 module.exports = router;
