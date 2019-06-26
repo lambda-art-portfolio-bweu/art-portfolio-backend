@@ -35,7 +35,10 @@ router.put('/:id', (req, res) => {
   Artist.update(id, changes)
       .then(changes => {
           if (changes) {
-              res.status(200).json({ message: 'Artist successfully updated.' });
+              res.status(200).json({
+                // return the artist  
+                
+                message: 'Artist successfully updated.' });
           } else {
               res.status(404).json({ message: 'Artist does not exist.' });
           }

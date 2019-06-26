@@ -5,6 +5,7 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const jwt =  require('jsonwebtoken');
 const secret = require('../config/secrets')
+const tokenService = require('./token-service.js');
 
 const  Artist = require('../artist/artist-model.js');
 function generateToken(artist){
@@ -38,12 +39,13 @@ router.post('/login', (req, res) => {
 
   Artist.findBy({ username })
     .first()
-    .then(artist => {
-      if (artist && bcrypt.compareSync(password, artist.password)) {
-        const token = tokenService.generateToken(artist);
+    .then(user => {
+      if (user && bcrypt.compareSync(password, user.password)) {
+        const token = tokenService.makeTokenFromUser(user);
         res.status(200).json({
-          message: `Welcome ${artist.username}!, have a token...`,
-          token,
+          message: `Welcome ${artist.username}!`,
+          id: artist.id,
+          token
         });
       } else {
         res.status(401).json({ message: 'Invalid Credentials' });
@@ -53,5 +55,6 @@ router.post('/login', (req, res) => {
       res.status(500).json(error);
     });
 });
+
 
 module.exports = router;
