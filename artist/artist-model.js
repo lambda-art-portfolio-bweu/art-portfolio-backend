@@ -7,3 +7,11 @@ module.exports = {
   remove,
   findBy
 };
+function findAll() {
+  return db('artist').select('id', 'username', 'password', artist);
+}
+
+function findById(id) {
+  return db('artist')
+    .where({ id })
+}
