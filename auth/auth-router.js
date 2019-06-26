@@ -26,3 +26,25 @@ router.post('/register', (req, res) => {
       res.status(500).json(error);
     });
 });
+
+router.post('/login', (req, res) => {
+  let { username, password } = req.body;
+
+  Artists.findBy({ username })
+    .first()
+    .then(artist => {
+      if (artist && bcrypt.compareSync(password, artist.password)) {
+        const token = tokenService.makeTokenFromArtist(artist);
+        res.status(200).json({
+          message: `Welcome ${artist.username}!`,
+          id: artist.id,
+          token
+        });
+      } else {
+        res.status(401).json({ message: 'Invalid Credentials' });
+      }
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
