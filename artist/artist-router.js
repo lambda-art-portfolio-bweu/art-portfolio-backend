@@ -11,24 +11,6 @@ const restricted = require('../auth/restricted-middleware.js');
 //       res.status(500).json({ error: "There was an error getting users from the database" })
 //     }
 //   });
-//   get artist by ID working
-//   router.get('/:id', async (req, res) => {
-//     const id = req.params.id
-//     try {
-//       const user = await Artist.findById(id);
-//       if (user.length > 0) {
-//         res.status(200).json(user[0]);
-//       } else {
-//         res.status(404).json({ error: `User with id ${id} does not exist`})
-//       }
-//     } catch(error) {
-//       res.status(500).json({ error: "There was an error info from the database" })
-//     }
-//   });
-  
-
-// [GET] Artist  and its restricted to the logged in artist
-// removed the restricted on every end point
 
 router.get('/artist', (req, res) => {
   Artist.findAll('artist')
