@@ -8,9 +8,9 @@ configMiddleware(server);
 server.use('/artist', artistRouter); // custom middleware
 
 // sanity check route
-server.get('/', (req, res) => {
-  res.status(200).json({ Hello: 'Team 10 Go!' });
-});
+// server.get('/', (req, res) => {
+//   res.status(200).json({ Hello: 'Team 10 Go!' });
+// });
 
 
 

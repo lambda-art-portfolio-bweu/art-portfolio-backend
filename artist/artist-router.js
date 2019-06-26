@@ -3,17 +3,9 @@ const router = require('express').Router();
 const Artist = require('../artist/artist-model.js');
 const restricted = require('../auth/restricted-middleware.js');
 
-// router.get('/', async (req, res) => {
-//     try {
-//       const allUsers = await Artist.findAll();
-//       res.status(200).json(allUsers);
-//     } catch(error) {
-//       res.status(500).json({ error: "There was an error getting users from the database" })
-//     }
-//   });
-
-router.get('/artist', (req, res) => {
-  Artist.findAll('artist')
+// get all artist by /artist
+router.get('/', (req, res) => {
+  Artist.find('artist')
       .then(artist => {
           res.status(200).json({ artist, decodedToken: req.decodedToken });
       })
