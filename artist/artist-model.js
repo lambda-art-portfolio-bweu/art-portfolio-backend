@@ -15,3 +15,16 @@ function findById(id) {
   return db('artist')
     .where({ id })
 }
+async function add(artist) {
+  const [id] = await db('artist').insert(artist);
+
+  return findById(id);
+}
+
+async function remove(id) {
+  return db('artist').where({ id }).delete();
+}
+
+function findBy(filter) {
+  return db('artist').where(filter);
+}
