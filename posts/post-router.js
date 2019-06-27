@@ -10,7 +10,19 @@ router.get("/", (req, res) => {
       .then((data) => res.json(data))
       .catch((data) =>
         res.status(500).json({
-          errorMessage: "The post could not be retrieved."
+          errorMessage: "The Post could not be retrieved."
         })
       );
   });
+
+  router.get("/:id", (req, res) => {
+    Posts.getById(req.params.id)
+      .then((data) => res.json(data))
+      .catch((data) =>
+        res.status(500).json({
+          errorMessage: "The Post could not be retrieved.."
+        })
+      );
+  });
+
+  
