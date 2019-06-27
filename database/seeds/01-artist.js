@@ -1,7 +1,7 @@
 exports.seed = function(knex, Promise) {
   const hashPassword = require('../../helpers/hashPassword');
 
-  const hashPassword = hashPassword('123');
+  // const hashPassword = hashPassword('123');
   // Deletes ALL existing entries
   return knex('artist').del()
     .then(function () {
