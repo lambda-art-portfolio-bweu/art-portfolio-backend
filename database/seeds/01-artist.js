@@ -1,7 +1,5 @@
 exports.seed = function(knex, Promise) {
-  const hashPassword = require('../../helpers/hashPassword');
 
-  const hashPassword = hashPassword('123');
   // Deletes ALL existing entries
   return knex('artist').del()
     .then(function () {
@@ -13,7 +11,7 @@ exports.seed = function(knex, Promise) {
           artistDescription: 'His camera skills are of a ninja',
           profilePictureUrl:'',
           username: 'ninja10',
-          password: hashPassword, 
+          password: 'haha', 
           email:'rui@team10.com' 
         },
         {
@@ -22,7 +20,7 @@ exports.seed = function(knex, Promise) {
           artistDescription: 'My guy still chasing peacocks',
           profilePictureUrl:'',
           username: 'peacock27',
-          password: hashPassword, 
+          password: 'haha', 
           email:'dwayne@team10.com'           
                
         },
@@ -32,7 +30,7 @@ exports.seed = function(knex, Promise) {
           artistDescription: 'Likes katanas and a a very feisty samurai',
           profilePictureUrl:'',
           username: 'samurai10',
-          password: hashPassword, 
+          password: 'haha', 
           email:'ike@team10.com' 
         }
       ]);

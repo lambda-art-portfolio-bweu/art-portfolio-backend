@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
         .string('artistName', 128)
         .notNullable()
 
-        artist.string('artistDescription', 255)
+        artist.text('artistDescription', 255)
         .notNullable()
         
         artist
