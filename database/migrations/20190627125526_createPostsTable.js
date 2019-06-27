@@ -11,7 +11,8 @@ exports.up = function(knex, Promise) {
         .text('description')
         .notNullable();
 
-        posts.string('categories')
+        posts
+        .string('categories')
         .notNullable();
  
         posts.string('pictureUrl')
