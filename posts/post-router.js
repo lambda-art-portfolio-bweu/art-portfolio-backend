@@ -1,15 +1,15 @@
 const router = require('express').Router();
 const Posts = require('./post-model.js');
 
-router.get('/', (req, res) => {
-  Posts.get()
-    .then((posts) => res.json(posts))
-    .catch((posts) =>
-      res.status(500).json({
-        errorMessage: 'The Post could not be retrieved.'
-      })
-    );
-});
+router.get("/", (req, res) => {
+    Posts.get()
+      .then((posts) => res.json(posts))
+      .catch((posts) =>
+        res.status(500).json({
+          errorMessage: "The Posts could not be retrieved."
+        })
+      );
+  });
 
 router.get('/:id', (req, res) => {
   Posts.getById(req.params.id)
@@ -74,3 +74,5 @@ router.delete('/:id', (req, res) => {
       })
     );
 });
+
+module.exports = router;
