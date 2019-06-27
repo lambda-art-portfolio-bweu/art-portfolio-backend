@@ -29,7 +29,7 @@ exports.up = function(knex, Promise) {
 //         pictureUrl: '',
 //         artistID: '',**
 //       }
-// };
+};
 
 exports.down = function(knex, Promise) {
     return knex.schema.dropTableIfExists('posts');
