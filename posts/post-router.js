@@ -25,6 +25,20 @@ router.get("/", (req, res) => {
       );
   });
 
+
+  router.post("/", (req, res) => {
+    const text = req.body;
+    Posts.insert(text)
+      .then((data) => {
+        Posts.get().then((data) => res.status(201).json(data));
+      })
+      .catch((error) =>
+        res.status(500).json({
+          errorMessage: "Reload the ting"
+        })
+      );
+  });
+
    // update()
    router.put('/:id', (req, res) => {
     const {id} = req.params;
@@ -50,5 +64,20 @@ router.get("/", (req, res) => {
         });
     }
     
+  });
+  
+  router.delete("/:id", (req, res) => {
+    const { id } = req.params;
+    Posts.remove(id)
+      .then((post) => {
+        if (post) {
+          res.status(200).json(post);
+        } else {
+          res.status(404).json({ errorMessage: 'Post Not Deleted' });
+        }
+      })
+      .catch((err) => res.status(500).json({
+        errorMessage: "Error" 
+        }));
   });
   
