@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Posts = require('./post-model.js');
+const restricted = require('../auth/restricted-middleware.js');
 
 router.get("/", (req, res) => {
     Posts.get()
@@ -21,7 +22,7 @@ router.get('/:id', (req, res) => {
     );
 });
 
-router.post('/', (req, res) => {
+router.post('/',  restricted,(req, res) => {
   const text = req.body;
   Posts.insert(text)
     .then((posts) => {
@@ -35,7 +36,7 @@ router.post('/', (req, res) => {
 });
 
 // update()
-router.put('/:id', (req, res) => {
+router.put('/:id',  restricted,(req, res) => {
   const { id } = req.params;
   if (id) {
     Posts.update(id, {
@@ -58,7 +59,7 @@ router.put('/:id', (req, res) => {
   }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id',  restricted,(req, res) => {
   const { id } = req.params;
   Posts.remove(id)
     .then((post) => {
