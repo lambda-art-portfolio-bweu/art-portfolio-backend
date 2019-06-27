@@ -8,9 +8,12 @@
     "devStart": "nodemon server.js",
     "server": "nodemon",
     "table1": "knex migrate:make createArtistTable",
+    "table2": "knex migrate:make createPostsTable",
     "migrate": "knex migrate:latest",
     "seed1": "knex seed:make 01-artist",
+    "seed2": "knex seed:make 02-posts",
     "runseed1": "knex seed:run 01-artist",
+    "runseed2": "knex seed:run 02-posts",
     "seed": "knex seed:run",
     "rollback": "knex migrate:rollback"
   },
