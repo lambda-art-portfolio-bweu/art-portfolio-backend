@@ -20,6 +20,12 @@ function findAll() {
 function get() {
   return db('artist')
 }
+// missing username, filter
+function findBy(filter) {
+  return db('artist')
+  .where('username', filter);
+}
+
 
 function findById(id) {
   return db('artist')

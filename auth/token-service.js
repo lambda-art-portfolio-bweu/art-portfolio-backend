@@ -5,16 +5,17 @@ module.exports = {
  generateToken,
 }
 
-const mySecret = process.env.SECRET || 'Heroku secret'
+const mySecret = process.env.SECRET || 'Team10'
 
 function generateToken(artist){
   const payload = {
     subject: artist.id,
-    username: artist.username,
+    username: artist.username
 
   }
   const options = {
     expiresIn: '1d'
   }
-  return jwt.sign(payload, secret.jwtSecret, options)
+  const token = jwt.sign(payload, mySecret, options);
+  return token
 }

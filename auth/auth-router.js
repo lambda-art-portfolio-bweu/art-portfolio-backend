@@ -1,5 +1,5 @@
 
-// const hashPassword = require('../helpers/hashPassword');
+const hashPassword = require('../helpers/hashPassword');
 
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
@@ -39,9 +39,9 @@ router.post('/login', (req, res) => {
 
   Artist.findBy({ username })
     .first()
-    .then(user => {
-      if (user && bcrypt.compareSync(password, user.password)) {
-        const token = tokenService.makeTokenFromUser(user);
+    .then(artist => {
+      if (artist && bcrypt.compareSync(password, artist.password)) {
+        const token = tokenService.generateToken(artist);
         res.status(200).json({
           message: `Welcome ${artist.username}!`,
           id: artist.id,
@@ -55,6 +55,5 @@ router.post('/login', (req, res) => {
       res.status(500).json(error);
     });
 });
-
 
 module.exports = router;
