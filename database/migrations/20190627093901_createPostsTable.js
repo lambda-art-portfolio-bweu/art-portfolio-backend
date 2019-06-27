@@ -20,6 +20,9 @@ exports.up = function(knex, Promise) {
         posts
         .integer('artist_id')
 
+        posts
+        .integer('heart')
+
         posts.timestamps(true,true)
       });
 //       post: {
