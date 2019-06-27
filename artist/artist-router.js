@@ -29,7 +29,7 @@ router.get('/:id', (req, res) => {
       });
 });
 // [PUT] /api/artistid - udpate artist info
-router.put('/:id', (req, res) => {
+router.put('/:id', restricted, (req, res) => {
   const id = req.params.id;
   const changes = req.body;
   Artist.update(id, changes)
@@ -48,7 +48,7 @@ router.put('/:id', (req, res) => {
       });
 });
 // [DELETE] /api/artistid - delete artist
-router.delete('/:id', (req, res) => {
+router.delete('/:id', restricted, (req, res) => {
   const { id } = req.params;
   Artist.remove(id)
       .then((artist) => {
