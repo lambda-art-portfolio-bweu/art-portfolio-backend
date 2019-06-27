@@ -25,4 +25,30 @@ router.get("/", (req, res) => {
       );
   });
 
+   // update()
+   router.put('/:id', (req, res) => {
+    const {id} = req.params;
+    if (id) {
+      Posts.update(id, {
+         text: req.body.text,
+         })
+        .then(data => {
+          if (data) {
+            Posts.get()
+              .then(data => res.json(data));
+          }
+          else {
+            res.status(404).json({
+              errorMessage: 'ID not found'
+            })
+          }
+        })
+        .catch(err => {
+          res.status(500).json({
+            errorMessage: 'Error'
+          });
+        });
+    }
+    
+  });
   
