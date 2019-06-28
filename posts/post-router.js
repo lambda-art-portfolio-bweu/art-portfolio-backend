@@ -30,7 +30,7 @@ router.post('/',  restricted,(req, res) => {
     })
     .catch((error) =>
       res.status(500).json({
-        errorMessage: 'Reload the ting'
+        errorMessage: 'Can Not add Post'
       })
     );
 });
