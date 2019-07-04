@@ -38,12 +38,12 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   if (id) {
-    Posts.update(id, {
-      text: req.body.text
-    })
+    Posts.update(id, req.body)
       .then((posts) => {
         if (posts) {
-          Posts.get().then((posts) => res.json(posts));
+          Posts.getById(id)
+          .then((posts) => res.status(201).json(posts))
+          .catch(err => res.status(404).json('Post not found'));
         } else {
           res.status(404).json({
             errorMessage: 'ID not found'
@@ -52,9 +52,13 @@ router.put('/:id', (req, res) => {
       })
       .catch((err) => {
         res.status(500).json({
-          errorMessage: 'Error'
+          errorMessage: "Couldn't update"
         });
       });
+  } else {
+    res.status(500).json({
+      errorMessage: "id must be sent"
+    });
   }
 });
 
