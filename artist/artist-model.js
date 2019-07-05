@@ -15,21 +15,18 @@ function find() {
 }
 
 function findAll() {
-  return db('artist')
+  return db('artist');
 }
 function get() {
-  return db('artist')
+  return db('artist');
 }
 // missing username, filter
-function findBy(filter) {
-  return db('artist')
-  .where('username', filter);
+function findBy(username) {
+  return db('artist').where({ username });
 }
 
-
 function findById(id) {
-  return db('artist')
-    .where({ id })
+  return db('artist').where({ id });
 }
 async function add(artist) {
   const [id] = await db('artist').insert(artist);
@@ -42,11 +39,12 @@ function update(id, changes) {
     .update(changes);
 }
 
-
 async function remove(id) {
-  return db('artist').where({ id }).delete();
+  return db('artist')
+    .where({ id })
+    .delete();
 }
 
-function findBy(filter) {
-  return db('artist').where(filter);
-}
+// function findBy(filter) {
+//   return db('artist').where(filter);
+// }
