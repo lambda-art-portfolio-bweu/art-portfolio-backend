@@ -1,23 +1,21 @@
-
 const hashPassword = require('../helpers/hashPassword');
 
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
-const jwt =  require('jsonwebtoken');
-const secret = require('../config/secrets')
+const jwt = require('jsonwebtoken');
+const secret = require('../config/secrets');
 const tokenService = require('./token-service.js');
 
-const  Artist = require('../artist/artist-model.js');
-function generateToken(artist){
+const Artist = require('../artist/artist-model.js');
+function generateToken(artist) {
   const payload = {
     subject: artist.id,
-    username: artist.username,
-
-  }
+    username: artist.username
+  };
   const options = {
     expiresIn: '1d'
-  }
-  return jwt.sign(payload, secret.jwtSecret, options)
+  };
+  return jwt.sign(payload, secret.jwtSecret, options);
 }
 
 router.post('/register', (req, res) => {
@@ -36,8 +34,7 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
   let { username, password } = req.body;
-
-  Artist.findBy({ username })
+  Artist.findBy(username)
     .first()
     .then(artist => {
       if (artist && bcrypt.compareSync(password, artist.password)) {
