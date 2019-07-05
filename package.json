@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "devStart": "nodemon server.js",
+    "start": "nodemon index.js",
+    "devStart": "node index.js",
     "server": "nodemon",
     "table1": "knex migrate:make createArtistTable",
     "table2": "knex migrate:make createPostsTable",
