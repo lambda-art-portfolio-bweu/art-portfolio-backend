@@ -18,7 +18,7 @@ router.get('/:id', (req, res) => {
       if (post) {
         res.status(200).json(post);
       } else {
-        Posts.findBy(id.replace(/[_]+/g, ' '))
+        Posts.findBy(decodeURI(id))
           .then(post => {
             if (post) {
               res.status(200).json(post);
