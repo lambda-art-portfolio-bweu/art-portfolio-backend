@@ -1,22 +1,43 @@
 const router = require('express').Router();
 const Posts = require('./post-model.js');
 
-router.get("/", (req, res) => {
-    Posts.get()
-      .then((posts) => res.json(posts))
-      .catch((posts) =>
-        res.status(500).json({
-          errorMessage: "The Posts could not be retrieved."
-        })
-      );
-  });
+router.get('/', (req, res) => {
+  Posts.get()
+    .then(posts => res.json(posts))
+    .catch(posts =>
+      res.status(500).json({
+        errorMessage: 'The Posts could not be retrieved.'
+      })
+    );
+});
 
 router.get('/:id', (req, res) => {
-  Posts.getById(req.params.id)
-    .then((posts) => res.json(posts))
-    .catch((posts) =>
+  let id = req.params.id.trim();
+  Posts.getById(id)
+    .then(post => {
+      if (post) {
+        res.status(200).json(post);
+      } else {
+        Posts.findBy(decodeURI(id))
+          .then(post => {
+            if (post) {
+              res.status(200).json(post);
+            } else {
+              res
+                .status(404)
+                .json({ message: 'No post with that id or username' });
+            }
+          })
+          .catch(err =>
+            res
+              .status(500)
+              .json({ message: 'The Post could not be retrieved..' })
+          );
+      }
+    })
+    .catch(err =>
       res.status(500).json({
-        errorMessage: 'The Post could not be retrieved..'
+        message: 'The Post could not be retrieved..'
       })
     );
 });
@@ -24,10 +45,10 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   const text = req.body;
   Posts.insert(text)
-    .then((posts) => {
-      Posts.get().then((posts) => res.status(201).json(posts));
+    .then(posts => {
+      Posts.get().then(posts => res.status(201).json(posts));
     })
-    .catch((error) =>
+    .catch(error =>
       res.status(500).json({
         errorMessage: 'Reload the ting'
       })
@@ -39,25 +60,25 @@ router.put('/:id', (req, res) => {
   const { id } = req.params;
   if (id) {
     Posts.update(id, req.body)
-      .then((posts) => {
+      .then(posts => {
         if (posts) {
           Posts.getById(id)
-          .then((posts) => res.status(201).json(posts))
-          .catch(err => res.status(404).json('Post not found'));
+            .then(posts => res.status(201).json(posts))
+            .catch(err => res.status(404).json('Post not found'));
         } else {
           res.status(404).json({
             errorMessage: 'ID not found'
           });
         }
       })
-      .catch((err) => {
+      .catch(err => {
         res.status(500).json({
           errorMessage: "Couldn't update"
         });
       });
   } else {
     res.status(500).json({
-      errorMessage: "id must be sent"
+      errorMessage: 'id must be sent'
     });
   }
 });
@@ -65,14 +86,14 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
   Posts.remove(id)
-    .then((post) => {
+    .then(post => {
       if (post) {
         res.status(200).json(post);
       } else {
         res.status(404).json({ errorMessage: 'Post Not Deleted' });
       }
     })
-    .catch((err) =>
+    .catch(err =>
       res.status(500).json({
         errorMessage: 'Error'
       })
