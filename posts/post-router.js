@@ -18,7 +18,8 @@ router.get('/:id', (req, res) => {
       if (post) {
         res.status(200).json(post);
       } else {
-        Posts.findBy(decodeURI(id))
+        const decodedId = /(?:\d+)$/.exec(id)[0]; 
+        Posts.getById(parseInt(decodedId))
           .then(post => {
             if (post) {
               res.status(200).json(post);
