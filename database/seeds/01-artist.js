@@ -1,6 +1,8 @@
+const bcrypt = require('bcrypt');
+
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('artist').del()
     .then(function () {
       // Inserts seed entries
       return knex("artist").insert([
@@ -12,7 +14,7 @@ exports.seed = function(knex, Promise) {
             "http://image.noelshack.com/fichiers/2019/27/2/1562055851-capture-d-ecran-du-2019-07-02-10-23-48.png",
           username: "ninja10",
           email: "rui@team10.com",
-          password: "haha"
+          password: bcrypt.hashSync("ninja10", 10)
         },
         {
           id: 2,
@@ -22,7 +24,7 @@ exports.seed = function(knex, Promise) {
             "http://image.noelshack.com/fichiers/2019/27/2/1562056506-capture-d-ecran-du-2019-07-02-10-34-53.png",
           username: "peacock27",
           email: "dwayne@team10.com",
-          password: "haha"
+          password: bcrypt.hashSync("peacock27", 10)
         },
         {
           id: 3,
@@ -32,7 +34,7 @@ exports.seed = function(knex, Promise) {
             "https://myanimeshelf.com/upload/dynamic/2011-01/17/afro-samurai_1638042.jpg",
           username: "samurai10",
           email: "ike@team10.com",
-          password: "samurai10"
+          password: bcrypt.hashSync("samurai10", 10)
         }
       ]);
     });
